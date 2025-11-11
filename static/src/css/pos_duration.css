@@ -1,0 +1,85 @@
+.product-duration-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    margin-top: 6px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-duration-badge i {
+    font-size: 0.9em;
+}
+
+.product-duration-badge.duration-quick {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.product-duration-badge.duration-standard {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.product-duration-badge.duration-extended {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.service-duration-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82em;
+    margin-top: 4px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.service-duration-info .duration-value {
+    font-weight: 600;
+    color: #059669;
+}
+
+.service-duration-info .duration-total {
+    margin-left: 8px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.service-duration-info.duration-quick {
+    border-left: 3px solid #10b981;
+}
+
+.service-duration-info.duration-standard {
+    border-left: 3px solid #f59e0b;
+}
+
+.service-duration-info.duration-extended {
+    border-left: 3px solid #ef4444;
+}
+
+.receipt-duration {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #666;
+}
+
+.receipt-total-duration {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 1.05em;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .product-duration-badge {
+        font-size: 0.8em;
+        padding: 3px 8px;
+    }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Product Card Template -->
+    <t t-name="pos_price_duration_display.ProductCard"
+       t-inherit="point_of_sale.ProductCard"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-price')]" position="after">
+            <t t-if="serviceDuration">
+                <div class="product-duration-badge" t-att-class="durationClass">
+                    <i class="fa fa-clock-o"/>
+                    <span t-esc="serviceDuration"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+    <!-- Orderline Template -->
+    <t t-name="pos_price_duration_display.Orderline"
+       t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-name')]" position="after">
+            <t t-set="displayData" t-value="line.getDisplayData()"/>
+            <t t-if="displayData and displayData.has_duration">
+                <div class="service-duration-info" t-att-class="displayData.duration_class">
+                    <i class="fa fa-clock-o"/>
+                    <span class="duration-value" t-esc="displayData.service_duration"/>
+                    <t t-if="displayData.show_total">
+                        <span class="duration-total">
+                            (Total: <t t-esc="displayData.total_service_duration"/>)
+                        </span>
+                    </t>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+    <!-- Receipt Template -->
+    <t t-name="pos_price_duration_display.OrderReceipt"
+       t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+        <xpath expr="//t[@t-foreach='receipt.orderlines']//t[@t-esc='line.product_name']" position="after">
+            <t t-if="line.service_duration_formatted">
+                <br/>
+                <span class="receipt-duration" style="font-family:'Segoe UI Emoji','Noto Color Emoji',sans-serif;">
+                    ⏱️ <t t-esc="line.service_duration_formatted"/>
+                </span>
+            </t>
+
+        </xpath>
+
+        <xpath expr="//div[hasclass('after-footer')]" position="before">
+            <t t-if="receipt.has_service_duration">
+                <br/>
+                <div class="receipt-total-duration">
+                    <strong>Total Service Time: </strong>
+                    <t t-esc="receipt.total_service_duration_formatted"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>
